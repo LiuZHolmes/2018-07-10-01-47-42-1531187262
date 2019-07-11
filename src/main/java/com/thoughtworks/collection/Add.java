@@ -2,31 +2,45 @@ package com.thoughtworks.collection;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Add {
     public int getSumOfEvens(int leftBorder, int rightBorder) {
-        throw new NotImplementedException();
+        int start = Math.min(leftBorder,rightBorder);
+        int end = Math.max(leftBorder, rightBorder);
+        return IntStream.rangeClosed(start,end).filter(x -> x % 2 == 0 ).sum();
     }
 
     public int getSumOfOdds(int leftBorder, int rightBorder) {
-        throw new NotImplementedException();
+        int start = Math.min(leftBorder,rightBorder);
+        int end = Math.max(leftBorder, rightBorder);
+        return IntStream.rangeClosed(start,end).filter(x -> x % 2 != 0).sum();
     }
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        IntSummaryStatistics stats = arrayList.stream().mapToInt(x -> x*3+2).summaryStatistics();
+        return (int)stats.getSum();
     }
 
     public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        return arrayList.stream().map(x -> x % 2 != 0 ? x*3+2 : x).collect(Collectors.toList());
+
     }
 
     public int getSumOfProcessedOdds(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        IntSummaryStatistics stats = arrayList.stream().filter(x -> x % 2 != 0).mapToInt(x -> x*3+5).summaryStatistics();
+        return (int)stats.getSum();
     }
 
     public double getMedianOfEven(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        List<Integer> ar = arrayList.stream().filter(x -> x % 2 == 0).collect(Collectors.toList());
+        return ar.indexOf(ar.size()/2);
+
     }
 
     public double getAverageOfEven(List<Integer> arrayList) {
