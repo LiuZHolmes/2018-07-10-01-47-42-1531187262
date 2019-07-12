@@ -23,8 +23,7 @@ public class Add {
     }
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {
-        IntSummaryStatistics stats = arrayList.stream().mapToInt(x -> x*3+2).summaryStatistics();
-        return (int)stats.getSum();
+        return arrayList.stream().mapToInt(x -> x*3+2).sum();
     }
 
     public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
@@ -33,8 +32,7 @@ public class Add {
     }
 
     public int getSumOfProcessedOdds(List<Integer> arrayList) {
-        IntSummaryStatistics stats = arrayList.stream().filter(x -> x % 2 != 0).mapToInt(x -> x*3+5).summaryStatistics();
-        return (int)stats.getSum();
+        return arrayList.stream().filter(x -> x % 2 != 0).mapToInt(x -> x*3+5).sum();
     }
 
     public double getMedianOfEven(List<Integer> arrayList) {
